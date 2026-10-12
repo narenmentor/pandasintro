@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pandas Starter Guide | Entri Coding Tamil</title>
+<style>
+:root{--sky:#0ea5e9;--sky-d:#0369a1;--sky-l:#e0f2fe;--sky-p:#f0f9fe;--line:#bae6fd;--text:#0f2a3d}
+*{box-sizing:border-box}
+body{margin:0;padding-bottom:64px;font:16px/1.6 -apple-system,"Segoe UI",Calibri,Roboto,Arial,sans-serif;color:var(--text);background:#fff}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+header.banner{background:var(--sky);color:#fff;padding:44px 0 40px}
+.banner .brand{letter-spacing:.2em;font-size:13px;font-weight:700;color:var(--sky-l)}
+.banner h1{margin:8px 0 6px;font-size:clamp(32px,6vw,48px);line-height:1.1}
+.banner p{margin:0;font-size:18px}
+h2{display:flex;align-items:center;gap:12px;color:var(--sky-d);font-size:26px;margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--sky)}
+.num{flex:none;display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--sky);color:#fff;font-size:17px}
+h3{margin:20px 0 6px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--sky-d)}
+.intro,.step,.cheat,.practice{margin:36px 0}
+.concept,.callout{background:var(--sky-l);border-left:5px solid var(--sky);padding:10px 14px;margin:0;border-radius:0 6px 6px 0}
+ul{margin:0;padding-left:22px} li{margin:4px 0}
+code{font-family:Consolas,"SF Mono",Menlo,monospace;font-size:.9em;background:var(--sky-l);color:var(--sky-d);padding:1px 5px;border-radius:4px}
+.code,.out{position:relative;border:1px solid var(--line);border-left:5px solid var(--sky);border-radius:6px;overflow:hidden}
+.code{background:var(--sky-p)} .out{background:#fff;border-color:var(--sky-d);border-left-color:var(--sky-d)}
+pre{margin:0;padding:12px 14px;overflow-x:auto;font:14px/1.5 Consolas,"SF Mono",Menlo,monospace;color:#1e293b}
+.copy{position:absolute;top:8px;right:8px;border:0;background:var(--sky);color:#fff;font-size:12px;padding:3px 10px;border-radius:4px;cursor:pointer}
+.copy:hover{background:var(--sky-d)}
+table{width:100%;border-collapse:collapse;margin-top:12px}
+th{background:var(--sky);color:#fff;text-align:left}
+th,td{padding:8px 12px;border:1px solid var(--line)}
+tbody tr:nth-child(even){background:var(--sky-p)}
+.tablewrap{overflow-x:auto}
+footer{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:3px solid var(--sky);text-align:center;padding:10px;font-weight:700;color:var(--sky-d)}
+@media print{.copy{display:none} .step{break-inside:avoid} header.banner{-webkit-print-color-adjust:exact;print-color-adjust:exact} *{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style></head><body>
+<header class="banner"><div class="wrap"><div class="brand">ENTRI CODING TAMIL</div><h1>Pandas Starter Guide</h1><p>The very basic essentials to get started with data in Python</p></div></header>
+<main class="wrap">
+<section class="intro"><h2>What is Pandas?</h2>
+<p class="callout">Pandas is a Python library that lets you load, clean, filter and summarize table data using just a few lines of code.</p>
+<p>Think of it as Excel inside Python. Imagine a Swiggy-style orders sheet with rows and columns. Pandas lets you filter it, add totals and sort it with code, and it still works smoothly when the sheet grows to lakhs of rows.</p>
+<h3>How to use this guide</h3>
+<ul><li>Every step has four parts: Concept, Explanation, Example Program and Sample Output.</li>
+<li>Type each example yourself. Steps 3 onwards reuse the <code>df</code> table created in Step 3.</li>
+<li>Your output may look slightly different on older Pandas versions (for example, text columns may show object instead of str). This is normal.</li></ul></section>
+<section class="step" id="step1">
+<h2><span class="num">1</span>Install and Import Pandas</h2>
+<h3>Concept</h3><p class="concept">Pandas is an external Python library for working with table-like data. Install it once, then import it in every program.</p>
+<h3>Explanation</h3><ul><li>Run <code>pip install pandas</code> once in your terminal.</li><li><code>import pandas as pd</code> loads the library. <code>pd</code> is the short name everyone uses.</li></ul>
+<h3>Example Program</h3><div class="code"><button class="copy" type="button">Copy</button><pre># Run once in terminal: pip install pandas
+import pandas as pd
+
+print(&quot;Pandas is ready!&quot;)</pre></div>
+<h3>Sample Output</h3><div class="out"><pre>Pandas is ready!</pre></div>
+</section><section class="step" id="step2">
+<h2><span class="num">2</span>Series: One Column of Data</h2>
+<h3>Concept</h3><p class="concept">A Series is a single column of values, where each value has a label (index).</p>
+<h3>Explanation</h3><ul><li>Create it from a list, and give your own labels with index.</li><li>You can run quick maths on it, like <code>mean()</code>, <code>sum()</code>, <code>max()</code>.</li></ul>
+<h3>Example Program</h3><div class="code"><button class="copy" type="button">Copy</button><pre>prices = pd.Series([250, 80, 300], index=[&quot;Biryani&quot;, &quot;Dosa&quot;, &quot;Pizza&quot;])
+
+print(prices)
+print(&quot;Average price:&quot;, prices.mean())</pre></div>
+<h3>Sample Output</h3><div class="out"><pre>Biryani    250
+Dosa        80
+Pizza      300
+dtype: int64
+Average price: 210.0</pre></div>
+</section><section class="step" id="step3">
+<h2><span class="num">3</span>DataFrame: A Full Table</h2>
+<h3>Concept</h3><p class="concept">A DataFrame is a table with rows and columns, just like an Excel sheet. It is the main object you will use in Pandas.</p>
+<h3>Explanation</h3><ul><li>Build it from a dictionary: each key becomes a column name, each list becomes the column&#x27;s values.</li><li>The numbers on the left (0, 1, 2...) are the row index. Pandas adds them for you.</li></ul>
+<h3>Example Program</h3><div class="code"><button class="copy" type="button">Copy</button><pre>df = pd.DataFrame({
+    &quot;Item&quot;:  [&quot;Biryani&quot;, &quot;Dosa&quot;, &quot;Pizza&quot;, &quot;Burger&quot;, &quot;Idli&quot;],
+    &quot;Price&quot;: [250, 80, 300, 150, 40],
+    &quot;Qty&quot;:   [2, 3, 1, 2, 4],
+    &quot;City&quot;:  [&quot;Chennai&quot;, &quot;Madurai&quot;, &quot;Chennai&quot;, &quot;Salem&quot;, &quot;Madurai&quot;]
+})
+
+print(df)</pre></div>
+<h3>Sample Output</h3><div class="out"><pre>      Item  Price  Qty     City
+0  Biryani    250    2  Chennai
+1     Dosa     80    3  Madurai
+2    Pizza    300    1  Chennai
+3   Burger    150    2    Salem
+4     Idli     40    4  Madurai</pre></div>
+</section><section class="step" id="step4">
+<h2><span class="num">4</span>Save and Read a CSV File</h2>
+<h3>Concept</h3><p class="concept">Real data usually lives in CSV files. Pandas can save a DataFrame to CSV and read it back in one line.</p>
+<h3>Explanation</h3><ul><li><code>to_csv()</code> saves the table. <code>index=False</code> skips the row numbers.</li><li><code>read_csv()</code> loads a CSV file into a DataFrame.</li><li><code>head(3)</code> shows only the first 3 rows. Great for a quick peek.</li></ul>
+<h3>Example Program</h3><div class="code"><button class="copy" type="button">Copy</button><pre>df.to_csv(&quot;orders.csv&quot;, index=False)
+
+data = pd.read_csv(&quot;orders.csv&quot;)
+print(data.head(3))</pre></div>
+<h3>Sample Output</h3><div class="out"><pre>      Item  Price  Qty     City
+0  Biryani    250    2  Chennai
+1     Dosa     80    3  Madurai
+2    Pizza    300    1  Chennai</pre></div>
+</section><section class="step" id="step5">
+<h2><span class="num">5</span>Explore Your Data</h2>
+<h3>Concept</h3><p class="concept">Before any analysis, check the size, column types and basic statistics of your data.</p>
+<h3>Explanation</h3><ul><li><code>shape</code> gives (rows, columns).</li><li><code>columns</code> lists all the column names.</li><li><code>describe()</code> gives count, mean, min, max and more for number columns.</li></ul>
+<h3>Example Program</h3><div class="code"><button class="copy" type="button">Copy</button><pre>print(df.shape)
+print(df.columns.tolist())
+print()
+print(df.describe())</pre></div>
+<h3>Sample Output</h3><div class="out"><pre>(5, 4)
+[&#x27;Item&#x27;, &#x27;Price&#x27;, &#x27;Qty&#x27;, &#x27;City&#x27;]
+
+            Price       Qty
+count    5.000000  5.000000
+mean   164.000000  2.400000
+std    110.136279  1.140175
+min     40.000000  1.000000
+25%     80.000000  2.000000
+50%    150.000000  2.000000
+75%    250.000000  3.000000
+max    300.000000  4.000000</pre></div>
+</section><section class="step" id="step6">
+<h2><span class="num">6</span>Select Columns and Rows</h2>
+<h3>Concept</h3><p class="concept">Pick exactly the part of the table you need: one column, a few columns, or one row.</p>
+<h3>Explanation</h3><ul><li><code>df[&quot;Item&quot;]</code> gives one column.</li><li><code>df[[&quot;Item&quot;, &quot;Price&quot;]]</code> (double brackets) gives several columns.</li><li><code>df.iloc[0]</code> gives a row by its position number.</li></ul>
+<h3>Example Program</h3><div class="code"><button class="copy" type="button">Copy</button><pre>print(df[&quot;Item&quot;].head(3))
+print()
+print(df[[&quot;Item&quot;, &quot;Price&quot;]].head(3))
+print()
+print(df.iloc[0])</pre></div>
+<h3>Sample Output</h3><div class="out"><pre>0    Biryani
+1       Dosa
+2      Pizza
+Name: Item, dtype: str
+
+      Item  Price
+0  Biryani    250
+1     Dosa     80
+2    Pizza    300
+
+Item     Biryani
+Price        250
+Qty            2
+City     Chennai
+Name: 0, dtype: object</pre></div>
+</section><section class="step" id="step7">
+<h2><span class="num">7</span>Filter Rows with a Condition</h2>
+<h3>Concept</h3><p class="concept">Filtering keeps only the rows that match a condition, like the Filter option in Excel.</p>
+<h3>Explanation</h3><ul><li><code>df[&quot;Price&quot;]</code> &gt; 100 checks every row and gives True or False.</li><li>Putting that inside <code>df[ ... ]</code> keeps only the True rows.</li><li>Use <code>==</code> to match text, and <code>&amp;</code> to combine two conditions.</li></ul>
+<h3>Example Program</h3><div class="code"><button class="copy" type="button">Copy</button><pre>expensive = df[df[&quot;Price&quot;] &gt; 100]
+print(expensive)
+print()
+
+chennai = df[df[&quot;City&quot;] == &quot;Chennai&quot;]
+print(chennai)</pre></div>
+<h3>Sample Output</h3><div class="out"><pre>      Item  Price  Qty     City
+0  Biryani    250    2  Chennai
+2    Pizza    300    1  Chennai
+3   Burger    150    2    Salem
+
+      Item  Price  Qty     City
+0  Biryani    250    2  Chennai
+2    Pizza    300    1  Chennai</pre></div>
+</section><section class="step" id="step8">
+<h2><span class="num">8</span>Add a New Column</h2>
+<h3>Concept</h3><p class="concept">You can create a new column by doing maths on existing columns. Pandas applies it to every row at once.</p>
+<h3>Explanation</h3><ul><li>Assign to a new column name with =.</li><li>No loop needed. Pandas handles all rows together.</li></ul>
+<h3>Example Program</h3><div class="code"><button class="copy" type="button">Copy</button><pre>df[&quot;Total&quot;] = df[&quot;Price&quot;] * df[&quot;Qty&quot;]
+print(df)</pre></div>
+<h3>Sample Output</h3><div class="out"><pre>      Item  Price  Qty     City  Total
+0  Biryani    250    2  Chennai    500
+1     Dosa     80    3  Madurai    240
+2    Pizza    300    1  Chennai    300
+3   Burger    150    2    Salem    300
+4     Idli     40    4  Madurai    160</pre></div>
+</section><section class="step" id="step9">
+<h2><span class="num">9</span>Sort the Data</h2>
+<h3>Concept</h3><p class="concept">Sorting arranges rows by the values of a column, from small to large or the other way round.</p>
+<h3>Explanation</h3><ul><li><code>sort_values()</code> takes the column name to sort by.</li><li><code>ascending=False</code> sorts from highest to lowest.</li></ul>
+<h3>Example Program</h3><div class="code"><button class="copy" type="button">Copy</button><pre>top_orders = df.sort_values(&quot;Total&quot;, ascending=False)
+print(top_orders)</pre></div>
+<h3>Sample Output</h3><div class="out"><pre>      Item  Price  Qty     City  Total
+0  Biryani    250    2  Chennai    500
+2    Pizza    300    1  Chennai    300
+3   Burger    150    2    Salem    300
+1     Dosa     80    3  Madurai    240
+4     Idli     40    4  Madurai    160</pre></div>
+</section><section class="step" id="step10">
+<h2><span class="num">10</span>Handle Missing Values</h2>
+<h3>Concept</h3><p class="concept">Real data often has empty cells, shown as <code>NaN</code> (Not a Number). You should find them and fix them.</p>
+<h3>Explanation</h3><ul><li><code>isnull()</code><code>.sum()</code> counts the empty cells in each column.</li><li><code>fillna()</code> replaces empty cells with a value of your choice, here the average.</li><li><code>dropna()</code> is the other option. It removes rows that have empty cells.</li></ul>
+<h3>Example Program</h3><div class="code"><button class="copy" type="button">Copy</button><pre>marks = pd.DataFrame({
+    &quot;Name&quot;:  [&quot;Anu&quot;, &quot;Ravi&quot;, &quot;Divya&quot;],
+    &quot;Score&quot;: [85, None, 92]
+})
+
+print(marks.isnull().sum())
+print()
+
+marks[&quot;Score&quot;] = marks[&quot;Score&quot;].fillna(marks[&quot;Score&quot;].mean())
+print(marks)</pre></div>
+<h3>Sample Output</h3><div class="out"><pre>Name     0
+Score    1
+dtype: int64
+
+    Name  Score
+0    Anu   85.0
+1   Ravi   88.5
+2  Divya   92.0</pre></div>
+</section><section class="step" id="step11">
+<h2><span class="num">11</span>Group and Summarize</h2>
+<h3>Concept</h3><p class="concept"><code>groupby()</code> splits the data into groups, then calculates a summary for each group. It is like a Pivot Table in Excel.</p>
+<h3>Explanation</h3><ul><li><code>groupby(&quot;City&quot;)</code> makes one group per city.</li><li><code>[&quot;Total&quot;]</code><code>.sum()</code> adds up the Total column inside each group.</li><li>You can also use <code>mean()</code>, <code>count()</code>, <code>max()</code> and <code>min()</code>.</li></ul>
+<h3>Example Program</h3><div class="code"><button class="copy" type="button">Copy</button><pre>city_sales = df.groupby(&quot;City&quot;)[&quot;Total&quot;].sum()
+print(city_sales)</pre></div>
+<h3>Sample Output</h3><div class="out"><pre>City
+Chennai    800
+Madurai    400
+Salem      300
+Name: Total, dtype: int64</pre></div>
+</section>
+<section class="cheat"><h2>Quick Cheat Sheet</h2><div class="tablewrap"><table><thead><tr><th>Task</th><th>Code</th></tr></thead><tbody><tr><td>Import Pandas</td><td><code>import pandas as pd</code></td></tr><tr><td>Read a CSV file</td><td><code>pd.read_csv(&quot;file.csv&quot;)</code></td></tr><tr><td>Save to CSV</td><td><code>df.to_csv(&quot;file.csv&quot;, index=False)</code></td></tr><tr><td>See first rows</td><td><code>df.head()</code></td></tr><tr><td>Rows and columns count</td><td><code>df.shape</code></td></tr><tr><td>Quick statistics</td><td><code>df.describe()</code></td></tr><tr><td>Select one column</td><td><code>df[&quot;Item&quot;]</code></td></tr><tr><td>Filter rows</td><td><code>df[df[&quot;Price&quot;] &gt; 100]</code></td></tr><tr><td>Add a new column</td><td><code>df[&quot;Total&quot;] = df[&quot;Price&quot;] * df[&quot;Qty&quot;]</code></td></tr><tr><td>Sort rows</td><td><code>df.sort_values(&quot;Total&quot;, ascending=False)</code></td></tr><tr><td>Count empty cells</td><td><code>df.isnull().sum()</code></td></tr><tr><td>Fill empty cells</td><td><code>df[&quot;Score&quot;].fillna(0)</code></td></tr><tr><td>Group and summarize</td><td><code>df.groupby(&quot;City&quot;)[&quot;Total&quot;].sum()</code></td></tr></tbody></table></div></section>
+<section class="practice"><h2>Try It Yourself</h2><p class="callout">The best way to learn Pandas is to practice on your own small table.</p>
+<ul><li>Create a DataFrame of 5 students with Name, Marks and City.</li><li>Filter the students who scored above 80, then sort them by Marks.</li><li>Add a Grade column, then find the average Marks for each City using groupby.</li></ul></section>
+</main>
+<footer>Entri Coding Tamil</footer>
+<script>
+document.querySelectorAll(".copy").forEach(function(b){b.addEventListener("click",function(){
+var t=b.parentElement.querySelector("pre").innerText;
+try{navigator.clipboard.writeText(t).then(function(){b.textContent="Copied!";setTimeout(function(){b.textContent="Copy"},1500)})}catch(e){}
+})});
+</script>
+</body></html>
